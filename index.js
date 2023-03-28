@@ -22,6 +22,7 @@ puppeteer.launch({
             const content = await page.$eval('#result-stats', el => el.innerText)
             const re = /\s([0-9]{1,3}(,[0-9]{3})*(\.[0-9]+)?|\d*\.\d+|\d+)\s/
             const results = parseInt(content.match(re)[0].trim().replace(',', '').replace('.', ''))
+            await page.close()
             resolve({
                 site,
                 results
